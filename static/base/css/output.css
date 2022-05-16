@@ -9,10 +9,10 @@
     background: url('./image/search.svg') no-repeat center center / auto 100%;
     display: inline-block;
     position: absolute;
-    top: 44px;
-    left: 12px;
+    top: 14px;
+    left: 11px;
     }
 
 .search_box input {
     padding: 3px 0 3px 2em;
-    }
+}
