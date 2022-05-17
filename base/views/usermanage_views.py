@@ -5,6 +5,7 @@ import cv2
 import base64
 import numpy as np
 import os
+import pandas as pd
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
@@ -15,9 +16,10 @@ from django.http import JsonResponse
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django_pandas.io import read_frame
 
 from base.forms import ProfileForm
-from base.models import User, Profile
+from base.models import User, Profile, Nippou
 
 class MyLoginView(LoginView):
     redirect_authenticated_user = True
@@ -59,7 +61,19 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['profile'] = Profile.objects.get(pk=self.kwargs['pk'])
+        profile = Profile.objects.get(pk=self.kwargs['pk'])
+        context['profile'] = profile
+        user_nippou =  Nippou.objects.filter(user=profile.user).values('revenue','date').order_by('date')
+        df_nippou = read_frame(user_nippou)
+        df_nippou['date'] = pd.to_datetime(df_nippou['date'])
+        mm = df_nippou.set_index(['date'])
+        all_sum_of_revenue = mm.resample(rule='M').sum()
+        sum_of_revenue_list = all_sum_of_revenue['revenue'].tolist()
+        if not len(sum_of_revenue_list) == 0:
+            sum_of_revenue = sum_of_revenue_list[-1]
+        else:
+            sum_of_revenue = 0
+        context['sum_of_revenue'] = sum_of_revenue
         return context
 
 @login_required

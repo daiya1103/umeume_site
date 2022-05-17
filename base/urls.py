@@ -18,6 +18,7 @@ from .views import (
     TagOutputListView,
     OutputCreateView,
     OutputDetailView,
+    StudentListView,
 )
 app_name = 'base'
 
@@ -34,5 +35,6 @@ urlpatterns = [
     path('output/', OutputListView.as_view(), name='output-list'),
     path('output/<str:slug>', TagOutputListView.as_view(), name='tagoutput-list'),
     path('output/new/', OutputCreateView.as_view(), name='output-create'),
-    path('output/detail/<int:pk>/', OutputDetailView.as_view(), name='output-detail')
+    path('output/detail/<int:pk>/', OutputDetailView.as_view(), name='output-detail'),
+    path('teacher/', StudentListView.as_view(), name='teacher'),
 ]

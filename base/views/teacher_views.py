@@ -14,3 +14,9 @@ from base.models import User
 class StudentListView(ListView):
     model = User
     template_name = 'base/teacher.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        teacher = self.request.user
+        context['students'] = teacher.student.all()
+        return context

@@ -39,9 +39,15 @@
             <p>
                 今日は{% now 'Y' %}年{% now 'n' %}月{% now 'd' %}日です。
             </p>
+            {% if user.is_admin %}
+            <p>
+                <a href="{% url 'base:teacher' %}">講師専用ページへ</a>
+            </p>
+            {% else %}
             <p>
                 担当講師: {{ user.teacher.profile.name }}先生
             </p>
+            {% endif %}
             {% if user.profile.target == 0 %}
             <p>目標金額を設定してください</p>
             {% else %}
