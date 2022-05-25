@@ -72,3 +72,14 @@
     background-color: #D5EAD9;
     color: black;
 }
+.menu-icon{
+    position: relative;
+}
+
+.link-select{
+    position: absolute;
+}
+
+.row{
+    margin:0px 30px;
+}
