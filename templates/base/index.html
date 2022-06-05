@@ -70,38 +70,26 @@
 {% block content %}
 {% if user.is_authenticated %}
 <div class="row">
-    <div class="col-6 col-lg-4 link-box select-btn-y">
+    <div class="col-6 col-lg-4 link-box">
         <a href="{% url 'base:nippou-create' %}">
-            <img src="static/base/images/日報一覧.png" class="menu-icon">
-            <div class="link-select">
-                日報提出
-            </div>
+            <img src="{% static 'base/images/nippou.png' %}" class="menu-icon">
         </a>
     </div>
-    <div class="col-6 col-lg-4 link-box select-btn-g">
-        <img src="static/base/images/アウトプット記入.png" class="menu-icon">
+    <div class="col-6 col-lg-4 link-box">
         <a href="{% url 'base:output-create' %}">
-            <div class="link-select">
-                アウトプット<br>記入
-            </div>
+            <img src="{% static 'base/images/output.png' %}" class="menu-icon">
         </a>
     </div>
 </div>
 <div class="row">
-    <div class="col-6 col-lg-4 link-box select-btn-r">
-        <img src="static/base/images/コンテンツサイト.png" class="menu-icon">
+    <div class="col-6 col-lg-4 link-box">
         <a href="https://ume-school.com/">
-            <div class="link-select">
-                コンテンツ<br>サイトへ
-            </div>
+            <img src="{% static 'base/images/content.png' %}" class="menu-icon">
         </a>
     </div>
-    <div class="col-6 col-lg-4 link-box  select-btn-b">
-        <img src="static/base/images/Q&A.png" class="menu-icon">
+    <div class="col-6 col-lg-4 link-box">
         <a href="{% url 'base:nippou-list' %}">
-            <div class="link-select">
-                日報<br>一覧
-            </div>
+            <img src="{% static 'base/images/Q&A.png' %}" class="menu-icon">
         </a>
     </div>
 </div>

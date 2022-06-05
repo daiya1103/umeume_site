@@ -36,17 +36,12 @@
     background-color:rgba(255, 255, 255, 0.5) ;
 
 }
-.menu-btn{
-    color:#6b3a18;
-}
 
-.container-fluid{
+.header-logo{
     background-color: antiquewhite;
 }
 
 .menu{
-    width: 100%;
     background-color:white;
     color:brown;
-    padding-right: 290px;
 }
